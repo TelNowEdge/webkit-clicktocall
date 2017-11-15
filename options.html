@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="options.css">
+  </head>
+
+  <body>
+    <form>
+      <fieldset>
+        <legend>Settings</legend>
+        <div>
+          <label>Host</label>
+          <input type="text" id="tne_host" />
+        </div>
+        <div>
+          <label>Port</label>
+          <input type="text" id="tne_port" />
+        </div>
+        <div>
+          <label>Username</label>
+          <input type="text" id="tne_username" />
+        </div>
+        <div>
+          <label>Password</label>
+          <input type="password" id="tne_password" />
+        </div>
+        <div>
+          <label>Dial prefix</label>
+          <input type="text" id="tne_dialPrefix" />
+        </div>
+        <div>
+          <label>International prefix</label>
+          <input type="text" id="tne_intPrefix" />
+        </div>
+        <div>
+          <label>National prefix</label>
+          <input type="text" id="tne_natPrefix" />
+        </div>
+      </fieldset>
+
+      <button type="submit">Save</button>
+    </form>
+    <script src="storage.js"></script>
+    <script src="options.js"></script>
+  </body>
+</html>

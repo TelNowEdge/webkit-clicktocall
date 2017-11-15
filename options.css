@@ -1,0 +1,21 @@
+fieldset {
+    border: 1px solid #DADADA;
+}
+
+fieldset > fieldset:not(:last-child) {
+    margin-top: 20px;
+}
+
+label {
+  width: 200px;
+  display: inline-block;
+  font-weight: bold;
+}
+
+fieldset > div:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+button[type="submit"] {
+    margin-top: 30px;
+}
