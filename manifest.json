@@ -20,8 +20,13 @@
   },
   "content_scripts": [
     {
-      "matches": ["*://*/"],
+      "matches": [
+        "*://*/*"
+      ],
       "js": [
+        "Manager/DataStorage.js",
+        "Manager/DomWriter.js",
+        "Manager/DomParser.js",
         "main.js"
       ]
     }

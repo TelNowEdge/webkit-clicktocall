@@ -39,10 +39,30 @@
           <input type="text" id="tne_natPrefix" />
         </div>
       </fieldset>
+      <fieldset>
+        <legend>Advanced</legend>
+        <div>
+          <label>Style</label>
+          <select id="tne_style">
+            <option value="old">Old</option>
+            <option value="new">New</option>
+          </select>
+        </div>
+        <div>
+          <label>Patterns</label>
+          <textarea id="tne_patterns">
+          </textarea>
+        </div>
+        <div>
+          <label>Excludes</label>
+          <textarea id="tne_excludes">
+          </textarea>
+        </div>
+      </fieldset>
 
       <button type="submit">Save</button>
     </form>
-    <script src="storage.js"></script>
+    <script src="Manager/DataStorage.js"></script>
     <script src="options.js"></script>
   </body>
 </html>

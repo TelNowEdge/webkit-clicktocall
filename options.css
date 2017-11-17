@@ -10,6 +10,7 @@ label {
   width: 200px;
   display: inline-block;
   font-weight: bold;
+  vertical-align: top;
 }
 
 fieldset > div:not(:last-child) {
@@ -18,4 +19,9 @@ fieldset > div:not(:last-child) {
 
 button[type="submit"] {
     margin-top: 30px;
+}
+
+textarea {
+  width: 300px;
+  height: 150px;
 }
