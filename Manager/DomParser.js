@@ -34,7 +34,6 @@ DomParser.prototype = {
       .then(() => {
         const patterns = this.dataStorage.getPatterns();
         const regExp = new RegExp('(?:' + patterns.join(')|(?:') + ')', 'g');
-
         return process.call(this, regExp);
       });
   },
@@ -47,7 +46,6 @@ DomParser.prototype = {
 function process(regExp) {
   for (let i = 0; i < this.xpathRes.snapshotLength; i++) {
     const text = this.xpathRes.snapshotItem(i).textContent;
-
     const matches = text.match(regExp);
 
     if (null === matches) {

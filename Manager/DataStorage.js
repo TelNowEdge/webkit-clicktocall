@@ -21,15 +21,15 @@ function loadStorage() {
 function DataStorage() {
   this.options = {
     host: '',
-    port: null,
+    port: '',
     username: '',
     password: '',
-    dialPrefix: null,
-    intPrefix: null,
-    natPrefix: '00',
+    dialPrefix: '',
+    natPrefix: '0',
+    hashMethod: 'md5',
     style: 'old',
-    patterns: "(?:0|\\+)\\d{8,}\n(?:\\d{2}\\s){4}\\d{2}",
-    excludes: "http://telnowedge.com\nhttp://google.fr"
+    patterns: "^[\\+\\d][\\(\\)\\d-\\.\\s]+",
+    excludes: ""
   };
 }
 

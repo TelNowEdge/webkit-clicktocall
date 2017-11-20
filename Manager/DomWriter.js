@@ -7,25 +7,32 @@ function DomWriter() {
 
 DomWriter.prototype = {
   createHtmlNode: function createHtmlNode(html, element) {
+    const sanitized = sanitizeNumber.call(this, html);
+
+    if (sanitized === null) {
+      return this.createTextNode(html, element);
+    }
+
     const span = document.createElement('span');
 
     if (this.dataStorage.get('style') === 'new') {
-      span.setAttribute('style', 'border-bottom: 2px dotted #333;');
-      span.addEventListener('click', () => {
-        console.log('ok');
+      span.setAttribute('style', 'border-bottom: 2px dotted #333; cursor: pointer;');
+      span.addEventListener('dblclick', () => {
+        callListener(sanitized);
       });
     } else {
       const img = document.createElement('img');
-      img.setAttribute('src', '');
+      img.setAttribute('src', browser.extension.getURL("images/phone.png"));
       img.addEventListener('click', () => {
-        console.log('dsadas');
+        callListener(sanitized);
       });
 
       span.appendChild(img);
     }
 
-    span.insertAdjacentHTML('afterbegin', html);
+    span.insertAdjacentHTML('afterbegin', sanitized);
     element.parentNode.insertBefore(span, element);
+
     return this;
   },
 
@@ -35,3 +42,64 @@ DomWriter.prototype = {
     return this;
   },
 };
+
+function callListener(number) {
+  const command = new Command();
+
+  command
+    .createCallCommand(number)
+    .then((x) => {
+      command.send(x);
+    });
+}
+
+function sanitizeNumber(number) {
+  const parsed = libphonenumber.parse(number);
+
+  if (Object.keys(parsed).length !== 0) {
+    return '+' + libphonenumber.getPhoneCode(parsed.country) + parsed.phone;
+  }
+
+  const natPrefix = this.dataStorage.get('natPrefix');
+  const dialPrefix = this.dataStorage.get('dialPrefix');
+
+  let sanitized = number.replace(/[^+\d]+/g, '');
+
+  // French number
+  const regExp = new RegExp("^" + natPrefix + "[1-9]\\d{8}");
+  if (sanitized.match(regExp)) {
+    return dialPrefix + sanitized;
+  }
+
+  // US yellow page number ( 1-888-573-9922 )
+  if (number.match(/^\d-\d{3}-\d{3}-\d{4}$/)) {
+    return '+' + sanitized;
+  }
+
+  return null;
+
+  // let regExp = null;
+
+
+  // let sanitize = number.replace(/[^+\d]+/g, '');
+
+  // if (number.match(/^\+/)) {
+  //   return sanitize;
+  // }
+
+  // if (number.match(/^\(\d\)/)) {
+  //   return '+' + sanitize;
+  // }
+
+  // regExp = new RegExp("^" + intPrefix + "[1-9]\\d+");
+  // if (sanitize.match(regExp)) {
+  //   return dialPrefix + sanitize;
+  // }
+
+  // regExp = new RegExp("^" + natPrefix + "[1-9]\\d+");
+  // if (sanitize.match(regExp) && sanitize.length === 10) {
+  //   return dialPrefix + sanitize;
+  // }
+
+  // return sanitize;
+}

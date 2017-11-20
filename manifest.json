@@ -21,10 +21,17 @@
   "content_scripts": [
     {
       "matches": [
-        "*://*/*"
+        "*://*/*",
+        "file:///tmp/test.html"
       ],
       "js": [
+        "lib/libphonenumber-js.min.js",
+        "Security/md5.min.js",
+        "Security/sha256.js",
         "Manager/DataStorage.js",
+        "Provider/Connection.js",
+        "Provider/Authenticator.js",
+        "Provider/Command.js",
         "Manager/DomWriter.js",
         "Manager/DomParser.js",
         "main.js"
@@ -32,6 +39,11 @@
     }
   ],
   "permissions": [
-    "storage"
+    "storage",
+    "*://*/3pcc/GetChallenge",
+    "*://*/3pcc/Auth/*"
+  ],
+  "web_accessible_resources": [
+    "images/phone.png"
   ]
 }

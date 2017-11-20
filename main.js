@@ -3,6 +3,7 @@
 function ClickToCall() {
   this.domParser = new DomParser();
   this.domWriter = new DomWriter();
+  this.dataStorage = new DataStorage();
 }
 
 ClickToCall.prototype = {
@@ -18,7 +19,6 @@ ClickToCall.prototype = {
 
   process: function process(nodes) {
     nodes.forEach((x) => {
-
       const placement = [];
       const nodeText = x.node.textContent;
       x.node.textContent = '';
@@ -57,22 +57,40 @@ ClickToCall.prototype = {
       });
     });
   },
+
+  checkUrl: function checkUrl() {
+    return new Promise((resolve, reject) => {
+      this.dataStorage
+        .load()
+        .then(() => {
+          const excludes = this.dataStorage.getExcludes();
+
+          excludes.forEach((x) => {
+            if (x === '') {
+              return;
+            }
+
+            const regExp = new RegExp(x);
+            if (document.URL.match(regExp)) {
+              reject();
+            }
+          });
+
+          resolve();
+        });
+    });
+  },
 };
 
+const clickToCall = new ClickToCall();
 
-
-
-// console.log('dsadas');
-
-// browser.storage.local.get('extensions.adblockplus.currentVersion')
-//   .then((res) => {
-//     console.log(res.value);
-//   });
-// exit;
-var clickToCall = new ClickToCall();
 clickToCall
-  .getNodes()
-  .then((nodes) => {
-    clickToCall.process(nodes);
+  .checkUrl()
+  .then(() => {
+    clickToCall
+      .getNodes()
+      .then((nodes) => {
+        clickToCall.process(nodes);
+      });
   })
 ;
