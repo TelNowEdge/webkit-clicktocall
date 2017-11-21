@@ -29,6 +29,9 @@
         "Manager/DomWriter.js",
         "Manager/DomParser.js",
         "main.js"
+      ],
+      "css": [
+        "css/telnowedge.css"
       ]
     }
   ],

@@ -16,7 +16,7 @@ DomWriter.prototype = {
     const span = document.createElement('span');
 
     if (this.dataStorage.get('style') === 'new') {
-      span.setAttribute('style', 'border-bottom: 2px dotted #333; cursor: pointer;');
+      span.setAttribute('class', 'tne-match');
       span.addEventListener('dblclick', () => {
         callListener(sanitized);
       });
