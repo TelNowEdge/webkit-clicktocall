@@ -63,6 +63,14 @@ ClickToCall.prototype = {
       this.dataStorage
         .load()
         .then(() => {
+          if (
+            this.dataStorage.get('username') === ''
+              || this.dataStorage.get('host') === ''
+              || this.dataStorage.get('port') === ''
+          ) {
+            reject();
+          }
+
           const excludes = this.dataStorage.getExcludes();
 
           excludes.forEach((x) => {
