@@ -13,7 +13,9 @@ function populateFields() {
   });
 }
 
-function saveOptions() {
+function saveOptions(e) {
+  e.preventDefault();
+
   const options = dataStorage.getAll();
 
   Object.keys(options).forEach((x) => {
@@ -21,6 +23,15 @@ function saveOptions() {
   });
 
   dataStorage.save();
+
+  const modal = document.getElementById('modal-save-done');
+  modal.style.opacity = '1';
+  modal.style.visibility = 'visible';
+
+  setTimeout(() => {
+    modal.style.opacity = '0';
+    modal.style.visibility = 'hidden';
+  }, 3000);
 }
 
 document.addEventListener('DOMContentLoaded', populateFields);
