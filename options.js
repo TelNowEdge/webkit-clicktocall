@@ -31,7 +31,7 @@ function saveOptions(e) {
   setTimeout(() => {
     modal.style.opacity = '0';
     modal.style.visibility = 'hidden';
-  }, 3000);
+  }, 2000);
 }
 
 document.addEventListener('DOMContentLoaded', populateFields);
