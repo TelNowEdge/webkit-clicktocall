@@ -77,29 +77,4 @@ function sanitizeNumber(number) {
   }
 
   return null;
-
-  // let regExp = null;
-
-
-  // let sanitize = number.replace(/[^+\d]+/g, '');
-
-  // if (number.match(/^\+/)) {
-  //   return sanitize;
-  // }
-
-  // if (number.match(/^\(\d\)/)) {
-  //   return '+' + sanitize;
-  // }
-
-  // regExp = new RegExp("^" + intPrefix + "[1-9]\\d+");
-  // if (sanitize.match(regExp)) {
-  //   return dialPrefix + sanitize;
-  // }
-
-  // regExp = new RegExp("^" + natPrefix + "[1-9]\\d+");
-  // if (sanitize.match(regExp) && sanitize.length === 10) {
-  //   return dialPrefix + sanitize;
-  // }
-
-  // return sanitize;
 }
