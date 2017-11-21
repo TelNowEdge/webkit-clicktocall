@@ -6,22 +6,17 @@
   "description": "TelNowEdge ClicktoCall adds link to dial on any Web Page that contains a phone number.",
   "applications": {
     "gecko": {
-      "id": "test@example.com"
+      "id": "ftpOGEMZutDAGagM@telnowedge.com"
     }
   },
   "options_ui": {
     "page": "options.html",
     "browser_style": true
   },
-  "background": {
-    "scripts": [
-      "jquery-3.2.1.min.js"
-    ]
-  },
   "content_scripts": [
     {
       "matches": [
-        "*://*/*",
+        "*://*/*"
       ],
       "js": [
         "lib/libphonenumber-js.min.js",
