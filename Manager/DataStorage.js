@@ -49,11 +49,19 @@ DataStorage.prototype = {
   },
 
   getPatterns: function getPatterns() {
-    return this.options.patterns.split("\n");
+    const res =  this.options.patterns.split("\n");
+
+    return res.filter((x) => {
+      return x !== '';
+    });
   },
 
   getExcludes: function getExcludes() {
-    return this.options.excludes.split("\n");
+    const res = this.options.excludes.split("\n");
+
+    return res.filter((x) => {
+      return x !== '';
+    });
   },
 
   save: function save() {
