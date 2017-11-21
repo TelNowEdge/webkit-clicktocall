@@ -8,6 +8,7 @@ function DomWriter() {
 DomWriter.prototype = {
   createHtmlNode: function createHtmlNode(html, element) {
     const sanitized = sanitizeNumber.call(this, html);
+    const local = typeof browser === 'undefined' ? chrome : browser;
 
     if (sanitized === null) {
       return this.createTextNode(html, element);
@@ -22,7 +23,7 @@ DomWriter.prototype = {
       });
     } else {
       const img = document.createElement('img');
-      img.setAttribute('src', browser.extension.getURL("images/phone.png"));
+      img.setAttribute('src', local.extension.getURL("images/phone.png"));
       img.addEventListener('click', () => {
         callListener(sanitized);
       });

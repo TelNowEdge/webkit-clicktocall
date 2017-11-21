@@ -1,21 +1,29 @@
 'use strict';
 
 function saveStorage() {
-  browser.storage.local.set({ tne: this.options });
+  const local = typeof browser === 'undefined' ? chrome : browser;
+
+  local.storage.local.set({ tne: this.options });
 }
 
 function loadStorage() {
-  return browser.storage.local
-    .get('tne')
-    .then((res) => {
-      if (typeof res.tne === 'undefined') {
-        return;
-      }
+  const local = typeof browser === 'undefined' ? chrome : browser;
 
-      Object.keys(res.tne).forEach((x) => {
-        this.options[x] = res.tne[x];
+  return new Promise((resolve) => {
+    local.storage.local
+      .get('tne', (res) => {
+        if (typeof res.tne === 'undefined') {
+          resolve();
+          return;
+        }
+
+        Object.keys(res.tne).forEach((x) => {
+          this.options[x] = res.tne[x];
+        });
+
+        resolve();
       });
-    });
+  });
 }
 
 function DataStorage() {
