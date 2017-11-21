@@ -1,11 +1,11 @@
 'use strict';
 
 function saveStorage() {
-  browser.storage.sync.set({ tne: this.options });
+  browser.storage.local.set({ tne: this.options });
 }
 
 function loadStorage() {
-  return browser.storage.sync
+  return browser.storage.local
     .get('tne')
     .then((res) => {
       if (typeof res.tne === 'undefined') {
