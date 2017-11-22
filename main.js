@@ -67,6 +67,7 @@ ClickToCall.prototype = {
             this.dataStorage.get('username') === ''
               || this.dataStorage.get('host') === ''
               || this.dataStorage.get('port') === ''
+              || this.dataStorage.get('securePort') === ''
           ) {
             reject();
           }

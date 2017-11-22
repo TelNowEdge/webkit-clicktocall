@@ -15,6 +15,7 @@ Connection.prototype = {
       .then(() => {
         this.host = this.dataStorage.get('host');
         this.port = this.dataStorage.get('port');
+        this.securePort = this.dataStorage.get('securePort');
       });
   },
 
@@ -54,6 +55,9 @@ Connection.prototype = {
           return JSON.parse(response).challenge;
         },
         (error) => {
+          if (location.protocol === 'https:') {
+            alert("[TelNowEdge click to call]\nPlease contact your administrator to install the root certificat");
+          }
           throw new Error(error);
         }
       );
@@ -61,5 +65,9 @@ Connection.prototype = {
 };
 
 function getUrl() {
-  return 'http://' + this.host + ':' + this.port + '/' + this.command;
+  const protocol = location.protocol;
+
+  const port = protocol === 'http:' ? this.port : this.securePort;
+
+  return protocol + '//' + this.host + ':' + port + '/' + this.command;
 }

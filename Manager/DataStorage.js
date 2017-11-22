@@ -29,7 +29,8 @@ function loadStorage() {
 function DataStorage() {
   this.options = {
     host: '',
-    port: '',
+    port: '1984',
+    securePort: '2347',
     username: '',
     password: '',
     dialPrefix: '',
