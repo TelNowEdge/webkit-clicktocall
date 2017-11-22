@@ -32,6 +32,10 @@ ClickToCall.prototype = {
         });
       });
 
+      if (placement.length === 0) {
+        return;
+      }
+
       placement.forEach((z, i) => {
         if (z.start === 0) {
           this.domWriter.createHtmlNode(nodeText.substr(0, z.length), x.node);
@@ -58,7 +62,7 @@ ClickToCall.prototype = {
         ;
       });
 
-      const lastItem = placement.slice(-1, 1).pop();
+      const lastItem = placement.slice(-1).pop();
       if ((lastItem.start + lastItem.length) === length) {
         return;
       }
