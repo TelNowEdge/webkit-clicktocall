@@ -21,6 +21,8 @@ ClickToCall.prototype = {
     nodes.forEach((x) => {
       const placement = [];
       const nodeText = x.node.textContent;
+      const length = nodeText.length;
+
       x.node.textContent = '';
 
       x.matches.forEach((m) => {
@@ -55,6 +57,16 @@ ClickToCall.prototype = {
           .createHtmlNode(nodeText.substr(z.start, z.length), x.node)
         ;
       });
+
+      const lastItem = placement.slice(-1, 1).pop();
+      if ((lastItem.start + lastItem.length) === length) {
+        return;
+      }
+
+      this.domWriter.createTextNode(
+        nodeText.substr(-1 * (length - (lastItem.start + lastItem.length))),
+        x.node
+      );
     });
   },
 
