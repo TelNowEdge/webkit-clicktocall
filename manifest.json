@@ -1,8 +1,9 @@
 {
   "manifest_version": 2,
   "name": "TelNowEdge Click to Call",
-  "author": "TelNowEdge - Boris Morel",
   "version": "1.2",
+  "short_name": "Click to call",
+  "author": "Boris Morel",
   "description": "TelNowEdge ClicktoCall adds link to dial on any Web Page that contains a phone number.",
   "options_ui": {
     "page": "options.html"
@@ -10,7 +11,8 @@
   "content_scripts": [
     {
       "matches": [
-        "*://*/*"
+        "*://*/*",
+        "file:///tmp/test.html"
       ],
       "js": [
         "lib/libphonenumber-js.min.js",
@@ -36,5 +38,12 @@
   ],
   "web_accessible_resources": [
     "images/phone.png"
-  ]
+  ],
+  "homepage_url": "https://github.com/TelNowEdge/webkit-clicktocall",
+  "icons": {
+    "48": "images/asterisk_48.png",
+    "96": "images/asterisk_96.png",
+    "128": "images/asterisk_128.png"
+  },
+  "default_locale": "en"
 }
