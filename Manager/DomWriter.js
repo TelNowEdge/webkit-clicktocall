@@ -31,7 +31,7 @@ DomWriter.prototype = {
       span.appendChild(img);
     }
 
-    span.insertAdjacentHTML('afterbegin', sanitized);
+    span.insertAdjacentHTML('afterbegin', html);
     element.parentNode.insertBefore(span, element);
 
     return this;
