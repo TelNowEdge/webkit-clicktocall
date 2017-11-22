@@ -37,7 +37,7 @@ function DataStorage() {
     natPrefix: '0',
     hashMethod: 'md5',
     style: 'old',
-    patterns: "[\\+\\d][\\(\\)\\d-\\.\\s]{7,20}",
+    patterns: "[\\+\\d][\\(\\)\\d-\\.\\s]{7,20}\\d",
     excludes: ""
   };
 }
