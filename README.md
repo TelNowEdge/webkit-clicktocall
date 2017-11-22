@@ -45,3 +45,7 @@ Install [TelNowEdge Click to call extension](https://chrome.google.com/webstore/
 
 **Note:**
 > If you want auto-pickup on your phone you must fill password
+
+## F.A.Q.
+
+To avoid mixed content (http XHR on https web site) this extension change protocol and port depends on the website's protocol. So when the XHR is sent over https the `certificat` must be in your `trusted ceritficats`.
