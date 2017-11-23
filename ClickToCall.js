@@ -23,9 +23,11 @@ ClickToCall.prototype = {
       const nodeText = x.node.textContent;
       const length = nodeText.length;
 
-      x.node.textContent = '';
-
       x.matches.forEach((m) => {
+        if (lookupFullMatch(nodeText, m) === false) {
+          return;
+        }
+
         placement.push({
           start: nodeText.indexOf(m),
           length: m.length
@@ -35,6 +37,8 @@ ClickToCall.prototype = {
       if (placement.length === 0) {
         return;
       }
+
+      x.node.textContent = '';
 
       placement.forEach((z, i) => {
         if (z.start === 0) {
@@ -106,6 +110,24 @@ ClickToCall.prototype = {
     });
   },
 };
+
+function lookupFullMatch(nodeText, match) {
+  const start = nodeText.indexOf(match);
+
+  if (start !== 0) {
+    if (nodeText[start-1].match(/\d/)) {
+      return false;
+    }
+  }
+
+  if ((start + match.length) < nodeText.length) {
+    if (nodeText[start + match.length].match(/\d/)) {
+      return false;
+    }
+  }
+
+  return true;
+}
 
 if (typeof module !== 'undefined') {
   module.exports = ClickToCall;
