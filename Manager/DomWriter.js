@@ -63,10 +63,19 @@ function sanitizeNumber(number) {
   const natPrefix = this.dataStorage.get('natPrefix');
   const dialPrefix = this.dataStorage.get('dialPrefix');
 
-  let sanitized = number.replace(/[^+\d]+/g, '');
+
+  let sanitized = number.replace(/[^\+\d]+/g, '');
+
+  // Internal numbers
+  const internalPatterns = this.dataStorage.getInternalPatterns();
+  const internalRegExp = new RegExp('(?:^' + internalPatterns.join('$)|(?:^') + '$)');
+
+  if (sanitized.match(internalRegExp)) {
+    return sanitized;
+  }
 
   // French number
-  const regExp = new RegExp("^" + natPrefix + "[1-9]\\d{8}");
+  const regExp = new RegExp("^" + natPrefix + "[1-9]\\d{8}$");
   if (sanitized.match(regExp)) {
     return dialPrefix + sanitized;
   }

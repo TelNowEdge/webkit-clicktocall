@@ -38,6 +38,7 @@ function DataStorage() {
     hashMethod: 'md5',
     style: 'old',
     patterns: "[\\+\\d][\\(\\)\\d-\\.\\s]{7,20}\\d",
+    internalPatterns: "",
     excludes: ""
   };
 }
@@ -59,6 +60,14 @@ DataStorage.prototype = {
 
   getPatterns: function getPatterns() {
     const res =  this.options.patterns.split("\n");
+
+    return res.filter((x) => {
+      return x !== '';
+    });
+  },
+
+  getInternalPatterns: function getInternalPatterns() {
+    const res =  this.options.internalPatterns.split("\n");
 
     return res.filter((x) => {
       return x !== '';

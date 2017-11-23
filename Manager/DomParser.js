@@ -32,8 +32,12 @@ DomParser.prototype = {
     return this.dataStorage
       .load()
       .then(() => {
-        const patterns = this.dataStorage.getPatterns();
+        let patterns = this.dataStorage.getPatterns();
+        const internalPatterns = this.dataStorage.getInternalPatterns();
+        patterns = patterns.concat(internalPatterns);
+
         const regExp = new RegExp('(?:' + patterns.join(')|(?:') + ')', 'g');
+
         return process.call(this, regExp);
       });
   },
