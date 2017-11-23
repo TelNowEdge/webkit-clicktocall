@@ -24,6 +24,7 @@
         "Provider/Command.js",
         "Manager/DomWriter.js",
         "Manager/DomParser.js",
+        "ClickToCall.js",
         "main.js"
       ],
       "css": [
