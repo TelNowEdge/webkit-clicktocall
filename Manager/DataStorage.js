@@ -83,3 +83,7 @@ DataStorage.prototype = {
     return loadStorage.call(this);
   }
 };
+
+if (typeof module !== 'undefined') {
+  module.exports = DataStorage;
+}

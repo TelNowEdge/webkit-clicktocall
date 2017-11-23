@@ -79,3 +79,7 @@ function sanitizeNumber(number) {
 
   return null;
 }
+
+if (typeof module !== 'undefined') {
+  module.exports = DomWriter;
+}

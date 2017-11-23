@@ -60,3 +60,7 @@ function process(regExp) {
 
   return this;
 }
+
+if (typeof module !== 'undefined') {
+  module.exports = DomParser;
+}
