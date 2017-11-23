@@ -1,13 +1,13 @@
 'use strict';
 
-function DomParser() {
+function DomParser(dataStorage) {
   this.wantedTargets = ['a', 'abbr', 'acronym', 'address', 'b', 'bdo', 'big', 'blockquote', 'body', 'caption', 'center', 'cite', 'code', 'dd', 'del', 'div', 'dfn', 'dt', 'em', 'fieldset', 'font', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'i', 'ins', 'kdb', 'li', 'object', 'pre', 'p', 'q', 'samp', 'small', 'span', 'strike', 's', 'strong', 'sub', 'sup', 'td', 'th', 'tt', 'u', 'var'];
 
   this.xpathExpression = "//text()[(parent::" + this.wantedTargets.join(" or parent::") + ")]";
 
   this.xpathRes = null;
 
-  this.dataStorage = new DataStorage();
+  this.dataStorage = dataStorage;
   this.nodes = [];
 }
 

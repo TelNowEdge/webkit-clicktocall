@@ -1,8 +1,7 @@
 'use strict';
 
-function DomWriter() {
-  this.dataStorage = new DataStorage();
-  this.dataStorage.load();
+function DomWriter(dataStorage) {
+  this.dataStorage = dataStorage;
 }
 
 DomWriter.prototype = {
