@@ -1,0 +1,21 @@
+{
+  "name": "tne-clicktocall",
+  "version": "1.0.0",
+  "description": "## Versions",
+  "main": "main.js",
+  "dependencies": {},
+  "devDependencies": {
+    "jsdom": "11.4.0",
+    "jsdom-global": "3.0.2",
+    "mocha": "^4.0.1"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@gitplus.telnowedge.com:2201/tne/ClickToCall.git"
+  },
+  "author": "",
+  "license": "ISC"
+}
