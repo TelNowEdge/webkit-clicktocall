@@ -12,6 +12,7 @@ ClickToCall.prototype = {
       .parseDom()
       .extractNodes()
       .then(() => {
+        console.log(this.domParser.getNodes());
         return this.domParser.getNodes();
       })
     ;
@@ -22,16 +23,21 @@ ClickToCall.prototype = {
       const placement = [];
       const nodeText = x.node.textContent;
       const length = nodeText.length;
+      let previousLength = 0;
 
       x.matches.forEach((m) => {
-        if (lookupFullMatch(nodeText, m) === false) {
+        const start = nodeText.indexOf(m, previousLength);
+
+        if (lookupFullMatch(nodeText, m, start) === false) {
           return;
         }
 
         placement.push({
-          start: nodeText.indexOf(m),
+          start,
           length: m.length
         });
+
+        previousLength = start + (m.length - 1);
       });
 
       if (placement.length === 0) {
@@ -111,9 +117,7 @@ ClickToCall.prototype = {
   },
 };
 
-function lookupFullMatch(nodeText, match) {
-  const start = nodeText.indexOf(match);
-
+function lookupFullMatch(nodeText, match, start) {
   if (start !== 0) {
     if (nodeText[start-1].match(/\d/)) {
       return false;
