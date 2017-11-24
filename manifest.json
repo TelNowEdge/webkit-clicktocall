@@ -3,7 +3,7 @@
   "name": "TelNowEdge Click to Call",
   "short_name": "Click to call",
   "author": "Boris Morel",
-  "version": "1.3",
+  "version": "1.4",
   "description": "TelNowEdge ClicktoCall adds link to dial on any Web Page that contains a phone number.",
   "options_ui": {
     "page": "options.html"

@@ -2,6 +2,10 @@
 
 ## Versions
 
+- 2017/11/24 <1.4>:
+    - Fix missing match for some number
+    - Add patterns to match internal numbers
+
 - 2017/11/22 <1.3>: Production version
 
 ## Overview
