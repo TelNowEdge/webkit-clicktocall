@@ -89,7 +89,8 @@ ClickToCall.prototype = {
         .load()
         .then(() => {
           if (
-            this.dataStorage.get('username') === ''
+            this.dataStorage.get('style') === 'disable'
+              || this.dataStorage.get('username') === ''
               || this.dataStorage.get('host') === ''
               || this.dataStorage.get('port') === ''
               || this.dataStorage.get('securePort') === ''
