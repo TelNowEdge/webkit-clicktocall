@@ -12,7 +12,6 @@ ClickToCall.prototype = {
       .parseDom()
       .extractNodes()
       .then(() => {
-        console.log(this.domParser.getNodes());
         return this.domParser.getNodes();
       })
     ;
