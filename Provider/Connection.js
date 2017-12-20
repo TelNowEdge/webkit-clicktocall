@@ -65,7 +65,11 @@ Connection.prototype = {
 };
 
 function getUrl() {
-  const protocol = location.protocol;
+  let protocol = location.protocol;
+
+  if (protocol.match(/^https?/) === null) {
+    protocol = 'https:';
+  }
 
   const port = protocol === 'http:' ? this.port : this.securePort;
 
