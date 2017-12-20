@@ -1,2 +1,6 @@
 {
+  "contextMenuItemSelectionDial": {
+    "message": "Dial",
+    "description": "Dial selected number"
+  }
 }
