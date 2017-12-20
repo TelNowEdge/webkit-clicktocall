@@ -2,6 +2,10 @@
 
 ## Versions
 
+- 2017/12/20 <1.5>:
+    - Add contextual menu to dial selection.
+    - Add option to disable DOM writer
+
 - 2017/11/24 <1.4>:
     - Fix missing match for some number
     - Add patterns to match internal numbers
