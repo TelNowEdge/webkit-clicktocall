@@ -46,7 +46,6 @@
     }
   ],
   "permissions": [
-    "background",
     "contextMenus",
     "storage",
     "*://*/3pcc/GetChallenge",
