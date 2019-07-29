@@ -11,7 +11,7 @@
   "background": {
     "scripts": [
       "lib/libphonenumber-js.js",
-      "Security/md5.min.js",
+      "Security/md5.js",
       "Security/sha256.js",
       "Manager/DataStorage.js",
       "Helper/NumberHelper.js",
@@ -29,7 +29,7 @@
       ],
       "js": [
         "lib/libphonenumber-js.js",
-        "Security/md5.min.js",
+        "Security/md5.js",
         "Security/sha256.js",
         "Manager/DataStorage.js",
         "Provider/Authenticator.js",
