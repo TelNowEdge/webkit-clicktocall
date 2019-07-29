@@ -19,10 +19,10 @@ Connection.prototype = {
       });
   },
 
-  request: function request() {
+  request: function request(command) {
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
-      xhr.open('GET', getUrl.call(this), true);
+      xhr.open('GET', getUrl.call(this, command), true);
       xhr.onreadystatechange = function(event) {
         if (this.readyState === XMLHttpRequest.DONE) {
           if (this.status === 200) {
@@ -39,32 +39,9 @@ Connection.prototype = {
       xhr.send(null);
     });
   },
-
-  setCommand: function setCommand(cmd) {
-    this.command = cmd;
-
-    return this;
-  },
-
-  getChallenge: function getChallenge() {
-    this.command = '3pcc/GetChallenge';
-
-    return this.request()
-      .then(
-        (response) => {
-          return JSON.parse(response).challenge;
-        },
-        (error) => {
-          if (location.protocol === 'https:') {
-            alert("[TelNowEdge click to call]\nPlease contact your administrator to install the root certificat");
-          }
-          throw new Error(error);
-        }
-      );
-  },
 };
 
-function getUrl() {
+function getUrl(command) {
   let protocol = location.protocol;
 
   if (protocol.match(/^https?/) === null) {
@@ -73,5 +50,5 @@ function getUrl() {
 
   const port = protocol === 'http:' ? this.port : this.securePort;
 
-  return protocol + '//' + this.host + ':' + port + '/' + this.command;
+  return protocol + '//' + this.host + ':' + port + '/' + command;
 }

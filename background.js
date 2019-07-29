@@ -3,6 +3,7 @@
 const local = typeof browser === 'undefined' ? chrome : browser;
 const dataStorage = new DataStorage();
 const numberHelper = new NumberHelper(dataStorage);
+const listener = new Listener(local);
 
 local.contextMenus.create({
   id: "tne-dial",
@@ -43,12 +44,16 @@ function process(number) {
 }
 
 function call(number) {
-  const command = new Command();
+  listener
+    .getChallenge()
+    .then(({challenge}) => {
+      const command = new Command();
 
-  command
-    .createCallCommand(number)
-    .then((x) => {
-      command.send(x);
+      command
+        .createCallCommand(challenge, number)
+        .then((x) => {
+          listener.sendCommand(x);
+        });
     });
 }
 

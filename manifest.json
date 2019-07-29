@@ -18,6 +18,7 @@
       "Provider/Connection.js",
       "Provider/Authenticator.js",
       "Provider/Command.js",
+      "Background/Listener.js",
       "background.js"
     ]
   },
@@ -31,7 +32,6 @@
         "Security/md5.min.js",
         "Security/sha256.js",
         "Manager/DataStorage.js",
-        "Provider/Connection.js",
         "Provider/Authenticator.js",
         "Provider/Command.js",
         "Manager/DomWriter.js",

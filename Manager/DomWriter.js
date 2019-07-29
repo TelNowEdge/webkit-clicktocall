@@ -1,6 +1,7 @@
 'use strict';
 
 function DomWriter(dataStorage, numberHelper) {
+  this.local = typeof browser === 'undefined' ? chrome : browser;
   this.dataStorage = dataStorage;
   this.numberHelper = numberHelper;
 }
@@ -8,7 +9,6 @@ function DomWriter(dataStorage, numberHelper) {
 DomWriter.prototype = {
   createHtmlNode: function createHtmlNode(html, element) {
     const sanitized = this.numberHelper.sanitizeNumber(html);
-    const local = typeof browser === 'undefined' ? chrome : browser;
 
     if (sanitized === null) {
       return this.createTextNode(html, element);
@@ -19,13 +19,13 @@ DomWriter.prototype = {
     if (this.dataStorage.get('style') === 'new') {
       span.setAttribute('class', 'tne-match');
       span.addEventListener('dblclick', () => {
-        callListener(sanitized);
+        callListener.call(this, sanitized);
       });
     } else {
       const img = document.createElement('img');
-      img.setAttribute('src', local.extension.getURL("images/phone.png"));
+      img.setAttribute('src', this.local.extension.getURL("images/phone.png"));
       img.addEventListener('click', () => {
-        callListener(sanitized);
+        callListener.call(this, sanitized);
       });
 
       span.appendChild(img);
@@ -47,11 +47,23 @@ DomWriter.prototype = {
 function callListener(number) {
   const command = new Command();
 
-  command
-    .createCallCommand(number)
-    .then((x) => {
-      command.send(x);
-    });
+  new Promise((resolve, reject) => {
+    this.local.runtime.sendMessage(
+      {query: "getChallenge"},
+      resolve
+    );
+  }).then(({challenge}) => {
+    command
+      .createCallCommand(challenge, number)
+      .then((command) => {
+        this.local.runtime.sendMessage(
+          {query: 'sendCommand', command},
+          (x) => {}
+        );
+      });
+  }, (err) => {
+    throw new Error(err);
+  });
 }
 
 if (typeof module !== 'undefined') {
