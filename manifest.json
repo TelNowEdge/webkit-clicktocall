@@ -10,7 +10,7 @@
   },
   "background": {
     "scripts": [
-      "lib/libphonenumber-js.min.js",
+      "lib/libphonenumber-js.js",
       "Security/md5.min.js",
       "Security/sha256.js",
       "Manager/DataStorage.js",
@@ -28,7 +28,7 @@
         "*://*/*"
       ],
       "js": [
-        "lib/libphonenumber-js.min.js",
+        "lib/libphonenumber-js.js",
         "Security/md5.min.js",
         "Security/sha256.js",
         "Manager/DataStorage.js",
